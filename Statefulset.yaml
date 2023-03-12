@@ -30,7 +30,8 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: homarr
-              mountPath: /data/database
+              mountPath: /app/data/configs
+              mountPath: /app/public/icons
 
   volumeClaimTemplates:
     - metadata:
