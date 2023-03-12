@@ -57,7 +57,7 @@ spec:
     spec:
       containers:
         - name: homarr
-          image: ghcr.io/wizarrrr/wizarr
+          image: ghcr.io/ajnart/homarr:latest
           env:
             - name: homarr_port
               value: "7575"
@@ -65,6 +65,8 @@ spec:
               value: "7575"
             - name: TZ
               value: "America/New_York"
+            - name: app_url
+              value: "home.promisedweb.com"
           ports:
             - name: homarr
               containerPort: 7575
