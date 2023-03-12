@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: homarr
+  namespace: homarr
+spec:
+  replicas: 1
+  serviceName: homarr
+  selector:
+    matchLabels:
+      app: homarr
+  template:
+    metadata:
+      labels:
+        app: homarr
+    spec:
+      containers:
+        - name: homarr
+          image: ghcr.io/wizarrrr/wizarr
+          env:
+            - name: homarr_port
+              value: "7575"
+            - name: port
+              value: "7575"
+            - name: TZ
+              value: "America/New_York"
+          ports:
+            - name: homarr
+              containerPort: 7575
+              protocol: TCP
+          volumeMounts:
+            - name: homarr
+              mountPath: /data/database
+
+  volumeClaimTemplates:
+    - metadata:
+        name: homarr
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "longhorn"
+        resources:
+          requests:
+            storage: 1Gi
